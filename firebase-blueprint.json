@@ -1,0 +1,503 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "Customer profile and account metadata with isolated PII access.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the user",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Verified email address of the user",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the customer",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "preferredDevice": {
+          "type": "string",
+          "description": "Primary streaming device selected by customer",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "internalNotes": {
+          "type": "string",
+          "description": "Admin-only internal customer notes",
+          "minLength": 0,
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of profile creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of profile update"
+        }
+      },
+      "required": ["uid", "email", "displayName", "preferredDevice", "createdAt", "updatedAt"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Trusted admin role assignment record.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "role", "createdAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer subscription order preserving historical purchased price in USD cents and separated order, payment, and subscription statuses.",
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerEmail": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "planName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "durationMonths": {
+          "type": "integer",
+          "description": "Confirmed plan duration in months (1, 3, 6, 12, 24, 36, 48)"
+        },
+        "connections": {
+          "type": "integer",
+          "description": "Simultaneous connection count (1 or 3)"
+        },
+        "amountCents": {
+          "type": "integer",
+          "description": "Historical price in minor currency units (USD cents)"
+        },
+        "currency": {
+          "type": "string",
+          "enum": ["USD"]
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["manual_invoice", "bank_transfer", "card_gateway_pending", "crypto_manual"]
+        },
+        "deviceType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "orderStatus": {
+          "type": "string",
+          "enum": ["Pending", "Processing", "Active", "Cancelled"]
+        },
+        "paymentStatus": {
+          "type": "string",
+          "enum": ["Awaiting Payment", "Payment Under Review", "Paid", "Refunded"]
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "enum": ["Pending", "Active", "Expired", "Cancelled"]
+        },
+        "activationDate": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 64
+        },
+        "expirationDate": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "orderId",
+        "userId",
+        "customerEmail",
+        "planId",
+        "planName",
+        "durationMonths",
+        "connections",
+        "amountCents",
+        "currency",
+        "paymentMethod",
+        "deviceType",
+        "orderStatus",
+        "paymentStatus",
+        "subscriptionStatus",
+        "activationDate",
+        "expirationDate",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "TrialRequest": {
+      "title": "TrialRequest",
+      "description": "Free trial request (up to 4 hours) tracked separately from paid orders.",
+      "type": "object",
+      "properties": {
+        "trialId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerEmail": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "deviceType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "playerApp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "Approved", "Active", "Expired", "Rejected"]
+        },
+        "durationHours": {
+          "type": "integer",
+          "enum": [4]
+        },
+        "activationDate": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 64
+        },
+        "expirationDate": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "trialId",
+        "userId",
+        "customerEmail",
+        "deviceType",
+        "playerApp",
+        "status",
+        "durationHours",
+        "activationDate",
+        "expirationDate",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SupportRequest": {
+      "title": "SupportRequest",
+      "description": "Customer technical or billing support inquiry.",
+      "type": "object",
+      "properties": {
+        "ticketId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerEmail": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 160
+        },
+        "category": {
+          "type": "string",
+          "enum": ["setup", "billing", "trial", "compatibility", "general"]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 2000
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Open", "In Progress", "Resolved"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "ticketId",
+        "userId",
+        "customerEmail",
+        "subject",
+        "category",
+        "message",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "Editorial SEO guide or blog article managed by admins.",
+      "type": "object",
+      "properties": {
+        "articleId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 180
+        },
+        "excerpt": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 400
+        },
+        "category": {
+          "type": "string",
+          "enum": ["Setup Guides", "Player Software", "Device Compatibility", "Troubleshooting", "Buyer Resources"]
+        },
+        "content": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 20000
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "reviewStatus": {
+          "type": "string",
+          "enum": ["Draft", "In Review", "Verified & Published"]
+        },
+        "seoTitle": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 120
+        },
+        "seoDescription": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 240
+        },
+        "lastUpdated": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 40
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "articleId",
+        "slug",
+        "title",
+        "excerpt",
+        "category",
+        "content",
+        "authorName",
+        "reviewStatus",
+        "seoTitle",
+        "seoDescription",
+        "lastUpdated",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Immutable administrative audit log recording fulfillment, trial, and CMS actions.",
+      "type": "object",
+      "properties": {
+        "logId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "adminUid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "adminEmail": {
+          "type": "string",
+          "format": "email",
+          "minLength": 3,
+          "maxLength": 254
+        },
+        "action": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "targetType": {
+          "type": "string",
+          "enum": ["order", "trial", "article", "profile", "support"]
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "details": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "logId",
+        "adminUid",
+        "adminEmail",
+        "action",
+        "targetType",
+        "targetId",
+        "details",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": { "$ref": "#/entities/Profile" },
+      "description": "Customer profile documents keyed by Firebase Auth UID."
+    },
+    "/admins/{userId}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Admin role lookup collection."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Subscription orders with separated orderStatus, paymentStatus, and subscriptionStatus."
+    },
+    "/trial_requests/{trialId}": {
+      "schema": { "$ref": "#/entities/TrialRequest" },
+      "description": "4-hour free trial requests."
+    },
+    "/support_requests/{ticketId}": {
+      "schema": { "$ref": "#/entities/SupportRequest" },
+      "description": "Customer support tickets."
+    },
+    "/articles/{articleId}": {
+      "schema": { "$ref": "#/entities/Article" },
+      "description": "Editorial articles and setup guides."
+    },
+    "/admin_audit_logs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Immutable admin audit trail."
+    }
+  }
+}

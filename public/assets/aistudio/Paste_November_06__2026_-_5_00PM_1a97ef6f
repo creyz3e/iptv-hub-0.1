@@ -1,0 +1,984 @@
+# MASTER BUILD PROMPT — IPTV SUBSCRIPTION
+
+## 1. Your Role and Mission
+
+Act as an elite multidisciplinary team consisting of:
+
+- Senior full-stack software engineer
+- Award-winning UI/UX designer
+- Technical SEO architect
+- Ecommerce conversion optimization specialist
+- SaaS product designer
+- Database and application security engineer
+- Professional editorial content strategist
+
+Build a complete, production-quality IPTV subscription ecommerce website called **IPTV Subscription**.
+
+This must not look like a generic AI-generated website, a basic IPTV template, or an unfinished demo.
+
+**Your primary objectives, in order:**
+
+1. Build an exceptionally strong SEO foundation designed to compete for competitive IPTV-related Google searches.
+2. Create a beautiful, modern, premium, credible brand experience.
+3. Maximize legitimate conversions with clear calls to action and minimal friction.
+4. Deliver a functional customer account, checkout/order flow, and admin management system.
+5. Make the website fast, mobile-first, accessible, secure, and scalable.
+6. Create genuinely helpful, differentiated content rather than mass-produced SEO pages.
+
+You have extensive creative freedom. Make smart design and product decisions independently. Add useful features, components, visual treatments, and improvements when they strengthen the product.
+
+Do not restrict yourself to the examples in this prompt. Think like a top-tier digital agency building a serious international business.
+
+However, do not invent product capabilities, licensing, channel counts, payment methods, reviews, guarantees, or other commercial claims.
+
+Assume the service only distributes content for which the operator has the necessary rights. Do not create misleading claims about access to copyrighted channels or streaming catalogs.
+
+---
+
+## 2. Technology and Architecture
+
+Preferred technology stack:
+
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Motion for React or Framer Motion
+- Lucide icons
+- Supabase PostgreSQL
+- Supabase Authentication
+- Supabase Row Level Security
+- Zod validation
+
+Prioritize SEO-friendly server rendering, static generation, and incremental regeneration where appropriate.
+
+Use server components for indexable content whenever possible.
+
+Do not build a client-side-only single-page application that depends on JavaScript to render essential SEO content.
+
+If the Google AI Studio environment cannot directly create this exact stack, use its strongest supported architecture while preserving a clean migration path to Next.js.
+
+All major features must work with persistent data. Never present mock data as if it were connected to a real backend.
+
+---
+
+## 3. Visual Identity and Design Direction
+
+Create a distinctive, premium technology and entertainment brand.
+
+The website should feel like a sophisticated international digital subscription platform, not a cheap IPTV reseller template.
+
+### Creative direction
+
+- Elegant, carefully controlled dark visual theme
+- Deep charcoal and midnight backgrounds
+- Refined electric-blue, violet, or cyan accents
+- Beautiful typography with strong hierarchy
+- Generous spacing and balanced layouts
+- Sophisticated gradients and subtle lighting effects
+- Premium cards with tasteful borders and depth
+- Custom-designed visual elements
+- Polished navigation and footer
+- Clear, highly visible CTA buttons
+- Excellent contrast and readability
+
+You may experiment with other visual directions if they produce a stronger final result.
+
+### Motion and interaction
+
+Use purposeful animations such as:
+
+- Refined hero entrance animations
+- Smooth section reveals
+- Subtle card hover interactions
+- Elegant pricing-card transitions
+- Animated interface previews
+- Microinteractions for buttons and form states
+- Smooth but restrained navigation transitions
+
+Respect reduced-motion preferences.
+
+Avoid excessive animations, distracting effects, layout shifts, or anything that slows the website.
+
+### High-quality visuals
+
+Create original-looking, professionally art-directed visuals.
+
+Use premium device mockups, abstract streaming interface compositions, compatible-device illustrations, and carefully designed product UI.
+
+Avoid generic stock imagery, fake channel logos, unauthorized entertainment artwork, and repetitive AI-looking illustrations.
+
+Optimize images using responsive sizes, modern formats, descriptive alt text, and appropriate loading priorities.
+
+The final website must look outstanding on mobile, tablet, laptop, and desktop.
+
+---
+
+## 4. Homepage — The Most Important Page
+
+Build an exceptionally strong homepage targeting the primary keyword:
+
+**IPTV Subscription**
+
+The homepage should include:
+
+### Header
+
+- Professional logo and brand identity
+- Desktop navigation
+- Mobile navigation
+- Plans and Pricing
+- Free Trial
+- Setup Guides
+- Device Compatibility
+- Help Center
+- Customer Login
+- Primary CTA
+
+Use a sticky header if it improves usability.
+
+### Hero section
+
+Create an original, high-impact hero section.
+
+Include:
+
+- A compelling H1 naturally incorporating "IPTV Subscription"
+- Clear, benefit-focused supporting copy
+- Primary CTA: "View Subscription Plans"
+- Secondary CTA: "Start Free Trial"
+- Beautiful premium hero visual
+- Concise explanation of the service
+
+Avoid exaggerated statements such as "world's best IPTV" or "100% guaranteed."
+
+### Additional homepage sections
+
+Design the following sections with your own creative interpretation:
+
+1. Service overview and customer benefits
+2. Subscription pricing preview
+3. Device compatibility showcase
+4. Simple three-step getting-started process
+5. IPTV player compatibility explanation
+6. Free trial information
+7. Setup and installation resources
+8. Why choose our service, using only verified differentiators
+9. Frequently asked questions
+10. Helpful guides and educational content
+11. Final conversion-focused CTA
+
+Do not force every section into a predictable card grid.
+
+Use varied layouts, editorial compositions, and strong visual storytelling.
+
+---
+
+## 5. Subscription Pricing — Single Source of Truth
+
+The following prices are confirmed and must be used consistently across the entire application.
+
+| Duration | Price | Connections |
+|---|---|---|
+| 1 Month | $10 | 1 |
+| 3 Months | $20 | 1 |
+| 6 Months | $30 | 1 |
+| 12 Months | $50 | 1 |
+| 24 Months | $90 | 1 |
+| 36 Months | $120 | 1 |
+| 48 Months | $140 | 1 |
+
+Special confirmed bundle:
+
+**3 Connections × 12 Months = $120**
+
+Free trial:
+
+**Up to 4 hours**
+
+### Critical pricing requirements
+
+Create a single typed pricing configuration or centralized database-backed catalog.
+
+Every pricing component must reference this source.
+
+Never hardcode different prices across pages.
+
+Use the same catalog for:
+
+- Homepage pricing
+- Dedicated pricing page
+- Checkout
+- Order summary
+- Customer dashboard
+- Admin dashboard
+- Confirmation emails
+- Structured data where appropriate
+
+Show the duration, price, and connection count clearly.
+
+Display the special three-connection bundle separately.
+
+Do not invent additional multi-connection pricing.
+
+Do not advertise lifetime subscriptions because no lifetime plan has been confirmed.
+
+Do not invent discounts, coupons, or limited-time offers.
+
+If calculating savings, use mathematically correct comparisons against the one-month plan, with transparent labeling.
+
+Design an elegant, responsive pricing section with a strong visual hierarchy and clear purchase buttons.
+
+---
+
+## 6. SEO Strategy — Highest Priority
+
+SEO must be treated as a core product requirement, not a finishing touch.
+
+Build a sophisticated, scalable SEO architecture that follows Google's current Search Essentials, spam policies, and helpful-content guidance.
+
+The website must be technically sound, easy to crawl, and genuinely useful.
+
+Do not promise rankings or manipulate search engines.
+
+### Keyword cluster 1 — General IPTV Subscription
+
+Primary keyword:
+
+**IPTV Subscription**
+
+Secondary keywords:
+
+- IPTV Subscription Service
+- IPTV Pro Subscription
+- IPTV Subscription Provider
+- IPTV Subscription Online
+
+Target these primarily through the homepage and relevant supporting content.
+
+Do not create separate pages for every slight variation of the same search intent.
+
+### Keyword cluster 2 — IPTV Smarters Pro Subscription
+
+Primary keyword:
+
+**IPTV Smarters Pro Subscription**
+
+Related keywords:
+
+- IPTV Smarters Subscription
+- Smarters Pro IPTV Subscription
+- Smarters IPTV Subscription
+- IPTV Smarter Pro Subscription
+- Smarters Pro Subscription
+- IPTV Smart Player Subscription
+- IPTV Smarters Pro Free Trial
+
+Create a dedicated, valuable landing page addressing this search intent.
+
+Explain the distinction between an IPTV player application and a content subscription.
+
+Do not falsely imply that this business owns, develops, or is officially affiliated with IPTV Smarters Pro.
+
+Use appropriate trademark and non-affiliation disclosures.
+
+Do not claim a player subscription is required unless verified.
+
+### Keyword cluster 3 — IPTV Free Trial
+
+Primary keyword:
+
+**IPTV Free Trial**
+
+Related keywords:
+
+- Free IPTV Trial
+- IPTV Subscription Trial
+- IPTV Smarters Pro Free Trial
+
+Create a dedicated free-trial landing page with clear conversion paths.
+
+Explain:
+
+- Trial duration: up to four hours
+- How customers request access
+- What information is required
+- How trial status is tracked
+- What happens when the trial ends
+
+Do not invent trial inclusions or guaranteed instant activation.
+
+### Keyword cluster 4 — IPTV Subscription Plans and Pricing
+
+Primary keyword:
+
+**IPTV Subscription Plans**
+
+Related keywords:
+
+- IPTV Subscription Pricing
+- IPTV Monthly Subscription
+- IPTV 3 Month Subscription
+- IPTV 6 Month Subscription
+- IPTV Annual Subscription
+- IPTV 12 Month Subscription
+- IPTV Lifetime Subscription
+
+Create a strong, conversion-focused pricing page.
+
+Use actual confirmed pricing.
+
+Do not offer or create a lifetime plan.
+
+If discussing lifetime subscriptions in educational content, clearly explain that they are not currently offered.
+
+### Keyword cluster 5 — IPTV Apps and Players
+
+Keywords:
+
+- IPTV Player
+- IPTV Smart Player
+- IPTV Smarters Pro
+- IPTV Player Subscription
+- IPTV Player Compatibility
+
+Create an educational resource hub about IPTV players, their roles, compatibility, and setup.
+
+Keep factual information accurate and distinguish between player software and subscription services.
+
+### Keyword cluster 6 — Device Compatibility
+
+Keywords:
+
+- IPTV for Smart TV
+- IPTV for Android TV
+- IPTV for Fire TV
+- IPTV for Samsung TV
+- IPTV for LG TV
+- IPTV for Apple TV
+
+Create useful device-specific pages where enough unique, verified information exists.
+
+Each page must provide original device-specific instructions, compatibility notes, requirements, and troubleshooting.
+
+Do not create thin pages that simply replace one device name with another.
+
+Do not claim support for any device that has not been verified.
+
+### Keyword cluster 7 — Setup, Installation, and Troubleshooting
+
+Keywords:
+
+- IPTV Smarters Pro Setup
+- IPTV Smarters Pro Installation
+- How to Set Up IPTV
+- IPTV Smarters Pro Not Working
+- IPTV Player Setup Guide
+
+Create detailed, practical tutorials.
+
+Include:
+
+- Clear numbered instructions
+- Accurate interface references
+- Screenshots or diagrams when available
+- Common mistakes
+- Troubleshooting
+- Helpful internal links
+- Relevant FAQs
+
+Never fabricate screenshots or pretend to have tested an application when that has not happened.
+
+---
+
+## 7. SEO Site Architecture
+
+Create a logical URL structure.
+
+Suggested routes:
+
+- /
+- /pricing
+- /free-trial
+- /iptv-smarters-pro-subscription
+- /iptv-players
+- /devices
+- /devices/android-tv
+- /devices/fire-tv
+- /devices/samsung-tv
+- /devices/lg-tv
+- /devices/apple-tv
+- /guides
+- /guides/how-to-set-up-iptv
+- /guides/iptv-smarters-pro-setup
+- /guides/iptv-smarters-pro-not-working
+- /blog
+- /faq
+- /contact
+- /login
+- /account
+- /account/orders
+- /admin
+
+Treat these as an initial architecture, not a requirement to publish thin or unfinished pages.
+
+Only publish indexable pages when they have meaningful, accurate, unique content.
+
+Prevent keyword cannibalization by assigning a clear primary search intent to every page.
+
+Use contextual internal linking and helpful breadcrumbs.
+
+Avoid doorway pages and unnecessary keyword-variant URLs.
+
+---
+
+## 8. Technical SEO Implementation
+
+Implement:
+
+- Server-rendered HTML for important SEO pages
+- Unique title tags
+- Unique meta descriptions
+- Correct canonical URLs
+- Semantic HTML
+- Logical heading hierarchy
+- XML sitemap generation
+- Robots.txt
+- Appropriate index/noindex rules
+- Open Graph metadata
+- Twitter/X sharing metadata
+- Breadcrumb navigation
+- Descriptive image alt text
+- Clean internal links
+- Custom 404 page
+- Proper redirects
+- Mobile-first layouts
+- Accessible navigation
+- Fast loading
+- Search-friendly pagination where needed
+
+Use schema.org structured data only where accurate and eligible.
+
+Potential types include:
+
+- Organization
+- WebSite
+- BreadcrumbList
+- Product or Service where appropriate
+- Offer for verified subscription pricing
+- Article
+- FAQPage where relevant
+
+Do not assume FAQ rich results are available to this type of website.
+
+Do not create fake ratings, reviews, availability, or other structured-data claims.
+
+Customer dashboards, admin routes, login flows, checkout sessions, and private account pages must not be indexed.
+
+### Core Web Vitals targets
+
+Aim for:
+
+- LCP at or below 2.5 seconds
+- INP at or below 200 milliseconds
+- CLS at or below 0.1
+
+Optimize JavaScript, fonts, images, CSS, caching, and hydration.
+
+Use lightweight animations and defer nonessential scripts.
+
+Treat these as performance targets to measure, not results to claim without testing.
+
+---
+
+## 9. Editorial SEO and Content Quality
+
+This website must have an outstanding editorial experience.
+
+Avoid generic, repetitive, mass-produced AI content.
+
+Do not create articles using the same predictable introduction, repeated headings, generic conclusions, and shallow explanations.
+
+Instead, create content that feels like it was carefully researched and edited by a knowledgeable human specialist.
+
+### Content standards
+
+Every article should:
+
+- Match a clear search intent
+- Answer the reader's main question quickly
+- Include useful, accurate, specific information
+- Provide practical instructions where appropriate
+- Explain limitations and compatibility differences
+- Avoid filler paragraphs
+- Use natural language
+- Include original examples where useful
+- Link to related resources naturally
+- Use meaningful headings
+- Have a clear editorial purpose
+- Avoid unnecessary repetition
+- Include an accurate last-updated date
+
+Vary article structures according to the subject.
+
+Some articles should be step-by-step tutorials. Others should be comparisons, troubleshooting guides, explainers, or buyer resources.
+
+Do not use fabricated firsthand experiences, invented expert credentials, fake testimonials, or fake testing results.
+
+Use AI to assist research and drafting, but clearly flag information requiring factual verification.
+
+Do not automatically publish unverified generated articles.
+
+### Editorial features
+
+Build a professional blog and resource center with:
+
+- Attractive article cards
+- Categories
+- Related articles
+- Author information
+- Editorial review fields
+- Last-updated dates
+- Reading progress indicators where useful
+- Table of contents for long guides
+- Helpful inline callouts
+- Responsive tables
+- Clear navigation
+- Contextual CTAs
+
+Create a content management workflow that allows articles to be drafted, reviewed, updated, and published.
+
+---
+
+## 10. Conversion Optimization
+
+Every major page should have a clear next action.
+
+Primary CTAs:
+
+- View Plans
+- Choose Plan
+- Get Started
+- Start Free Trial
+
+Secondary CTAs:
+
+- View Setup Guides
+- Check Device Compatibility
+- Contact Support
+
+Use strong, clear button labels.
+
+Do not overuse aggressive popups or manipulative urgency.
+
+Make the purchasing process simple and understandable.
+
+Clearly show pricing, duration, connection count, and the next step before customers commit.
+
+Use thoughtful trust-building elements, but only include claims and credentials that can be verified.
+
+---
+
+## 11. Customer Account System
+
+Build a simple, secure customer account system.
+
+The registration process must be extremely lightweight.
+
+Preferred options:
+
+- Email magic-link login
+- Google login if configured
+- Minimal email/password registration as a fallback
+
+Avoid long registration forms.
+
+Collect only the information necessary to process and support orders.
+
+If guest checkout is supported by the eventual payment provider, allow it and offer account activation afterward.
+
+Customers should not have to complete a complicated registration process just to view plans or request a trial.
+
+### Customer dashboard
+
+Create a beautiful, simple account area.
+
+Customers should be able to view:
+
+- Account details
+- Order history
+- Current subscription
+- Subscription duration
+- Connection count
+- Order status
+- Payment status
+- Selected payment method, when available
+- Activation date
+- Expiration date
+- Trial request status
+- Support contact options
+
+Use clear status labels:
+
+- Pending
+- Awaiting Payment
+- Payment Under Review
+- Paid
+- Processing
+- Active
+- Expired
+- Cancelled
+- Refunded
+
+Separate order, payment, and subscription statuses internally rather than forcing all three into one database field.
+
+Customers must only be able to access their own records.
+
+---
+
+## 12. Admin Dashboard
+
+Build a secure, professional admin dashboard.
+
+This dashboard should function as a practical business management system.
+
+### Overview
+
+Display:
+
+- Total customers
+- Total orders
+- Paid orders
+- Pending orders
+- Active subscriptions
+- Expired subscriptions
+- Trial requests
+- Revenue from verified paid orders
+- Recent customer activity
+
+### Customer management
+
+Allow the admin to:
+
+- Search customers
+- View customer profiles
+- View order histories
+- View payment status
+- See selected payment methods
+- See subscription details
+- Review trial requests
+- Add internal notes
+- Filter and sort records
+
+### Order management
+
+Allow the admin to:
+
+- View all orders
+- Filter by status
+- Review payment records
+- Change fulfillment status
+- Activate subscriptions after payment verification
+- Record activation and expiration dates
+- Cancel or expire subscriptions
+- Review refunds
+- View an audit history of administrative changes
+
+### Trial management
+
+Allow the admin to:
+
+- View free-trial requests
+- Approve or reject requests
+- Track activation and expiration
+- Record trial fulfillment status
+
+### Content management
+
+Allow the admin to manage:
+
+- Blog articles
+- SEO metadata
+- Draft and published status
+- Device guides
+- FAQs
+- Navigation content
+
+Protect all administrative routes and operations with server-side role checks.
+
+Do not rely on hidden navigation buttons or client-side checks for security.
+
+---
+
+## 13. Database Design
+
+Create a well-structured PostgreSQL schema.
+
+Suggested entities:
+
+- profiles
+- user_roles
+- subscription_plans
+- orders
+- order_items
+- payment_records
+- subscriptions
+- trial_requests
+- support_requests
+- articles
+- article_categories
+- admin_audit_logs
+
+Use appropriate foreign keys, constraints, indexes, and timestamps.
+
+Store prices as integer minor currency units, such as cents.
+
+Store currency explicitly as USD.
+
+Preserve historical purchased prices in order records even if catalog prices change later.
+
+Use Row Level Security to ensure customers cannot read or modify other customers' data.
+
+Restrict sensitive operations to trusted server-side code.
+
+Never expose privileged Supabase keys in the browser.
+
+---
+
+## 14. Checkout and Payment Architecture
+
+Create a complete order flow:
+
+1. Customer selects a subscription.
+2. Customer sees a clear order summary.
+3. Customer supplies minimal required information.
+4. Customer chooses an available payment method.
+5. The system creates a pending order.
+6. Payment is processed or submitted for verification.
+7. Payment status is updated securely.
+8. The admin can review fulfillment.
+9. Customer can track the order from their dashboard.
+
+Payment methods have not yet been confirmed.
+
+Therefore, create a modular payment integration architecture.
+
+Do not invent a live payment gateway or claim payments are working without credentials and successful integration tests.
+
+Allow payment providers to be configured later.
+
+Never mark an order as paid based solely on a browser redirect or a customer clicking a confirmation button.
+
+For automated payment providers, use authenticated server-side webhooks and idempotent processing.
+
+For manual payments, keep the order pending until an authorized admin verifies payment.
+
+Never store full payment card numbers or CVVs.
+
+---
+
+## 15. Free Trial System
+
+Create a dedicated free-trial request workflow.
+
+Trial duration: up to four hours.
+
+Use a minimal form.
+
+Suggested fields:
+
+- Email address
+- Device or player selection, if needed
+
+Do not ask for unnecessary personal details.
+
+Store requests securely.
+
+Allow the admin to approve and manage trials.
+
+Prevent obvious automated abuse through appropriate rate limits and validation.
+
+Do not make unsupported claims about trial activation speed.
+
+Show customers the real status of their requests.
+
+---
+
+## Brand Identity — Lumiq TV
+
+The official brand name of this website is **Lumiq TV**.
+
+Replace all generic references to "IPTV Subscription" as the business or brand name with "Lumiq TV".
+
+Important distinctions:
+- Brand name: Lumiq TV
+- Primary SEO keyword: IPTV Subscription
+- Website identity: A premium, modern, professional streaming subscription brand.
+- Brand presentation: Lumiq TV should be consistently displayed across the logo, header, footer, customer dashboard, admin dashboard, emails, and all branded website elements.
+
+Create a distinctive visual identity and professional logo for Lumiq TV. The logo should be modern, memorable, minimal, and recognizable.
+
+Use "Lumiq TV" naturally in branding and marketing copy while continuing to prioritize "IPTV Subscription" as the homepage's primary SEO keyword.
+
+Do not confuse the brand name with the target SEO keyword. They serve different purposes.
+
+----
+
+## 16. Email Notifications
+
+Prepare transactional email templates for:
+
+- Welcome/account access
+- Order received
+- Payment confirmed
+- Payment requires review
+- Subscription activated
+- Trial request received
+- Trial approved
+- Subscription expiration reminder
+- Order cancelled
+- Support request received
+
+Use professional, consistent branding.
+
+Emails must display the correct pricing and order details from the central data source.
+
+Use a configurable email provider.
+
+Do not claim emails are being delivered until the provider is configured and tested.
+
+---
+
+## 17. Legal, Transparency, and Trust
+
+Create properly structured pages for:
+
+- Terms of Service
+- Privacy Policy
+- Refund Policy
+- Contact
+- Copyright and intellectual property
+- Service and device compatibility disclosures
+
+Clearly explain that third-party IPTV player applications and content subscriptions may be separate products.
+
+Do not claim official partnerships with third-party apps or device manufacturers without verification.
+
+Do not invent company registration details, business addresses, licenses, or guarantees.
+
+Mark legal-policy drafts as requiring owner review before publication.
+
+---
+
+## 18. Responsive Design and Accessibility
+
+The website must be designed mobile-first.
+
+Test the experience at common mobile, tablet, and desktop widths.
+
+Requirements:
+
+- No horizontal overflow
+- Touch-friendly buttons
+- Accessible forms
+- Clear validation errors
+- Readable typography
+- Proper focus states
+- Keyboard navigation
+- Accessible modal dialogs
+- Screen-reader-friendly controls
+- Reduced-motion support
+- Strong contrast
+- Stable layouts
+
+The mobile experience should feel purpose-built, not simply a compressed desktop layout.
+
+---
+
+## 19. Important Product Enhancements
+
+Independently evaluate and implement useful enhancements such as:
+
+- A polished plan comparison interface
+- Device compatibility finder
+- Interactive setup-guide selector
+- Smart FAQ search
+- Customer order timeline
+- Subscription expiration indicator
+- Contextual help widgets
+- Better empty states
+- Useful onboarding instructions
+- SEO content management
+- Internal linking suggestions
+- Editorial content review tools
+
+Only add features that improve usability, conversion, SEO, or operational efficiency.
+
+Avoid unnecessary complexity.
+
+---
+
+## 20. Implementation Requirements
+
+Build the actual website and functional application, not merely a visual concept.
+
+Use reusable components, clean architecture, typed data models, and maintainable code.
+
+Include:
+
+- Complete public-facing website
+- Pricing system
+- Authentication
+- Customer dashboard
+- Admin dashboard
+- Persistent database integration
+- Order management
+- Trial management
+- Content management
+- SEO infrastructure
+- Responsive styling
+- Error handling
+- Loading states
+- Empty states
+- Environment variable documentation
+- Deployment configuration
+- Setup instructions
+
+Create migrations and database policies where applicable.
+
+Use clearly labeled placeholders only for unconfigured external services or facts that require verification.
+
+Do not silently simulate payments, successful emails, active subscriptions, or verified customer activity.
+
+### Final quality assurance
+
+Before considering the project complete:
+
+1. Check every major route.
+2. Verify that pricing is consistent everywhere.
+3. Test mobile navigation and layouts.
+4. Check authentication and authorization.
+5. Validate database permissions.
+6. Test order and trial status workflows.
+7. Check canonical URLs and metadata.
+8. Validate structured data.
+9. Check sitemap and robots configuration.
+10. Review internal linking.
+11. Check accessibility.
+12. Review loading performance.
+13. Remove placeholder marketing claims.
+14. Identify all remaining integrations requiring credentials or manual setup.
+
+Provide a clear implementation summary showing what is complete, what has been tested, and what still requires configuration.
+
+## Final Instruction
+
+Treat this project as a flagship commercial website competing in a highly competitive search market.
+
+Prioritize extraordinary design quality, excellent technical SEO, genuinely useful content, high conversion potential, and reliable backend functionality.
+
+Be creative and ambitious without sacrificing speed, accuracy, security, or maintainability.
+
+Make the website feel like a serious premium business that customers can trust.
+
+**Start building the complete application now.**

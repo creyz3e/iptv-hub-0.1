@@ -1,0 +1,280 @@
+{
+  "profiles": [
+    {
+      "uid": "usr-1793986774735",
+      "email": "new.evaluator@example.com",
+      "displayName": "new evaluator",
+      "preferredDevice": "Android TV / Google TV",
+      "role": "customer",
+      "internalNotes": "",
+      "createdAt": "2026-11-06T17:39:34.735Z",
+      "updatedAt": "2026-11-06T17:39:34.735Z"
+    },
+    {
+      "uid": "usr-admin-1",
+      "email": "getleasecheck@gmail.com",
+      "displayName": "Lumiq TV Operations Admin",
+      "preferredDevice": "Apple TV (tvOS)",
+      "role": "admin",
+      "internalNotes": "Primary platform administrator account.",
+      "createdAt": "2026-11-06T08:00:00.000Z",
+      "updatedAt": "2026-11-06T08:00:00.000Z"
+    },
+    {
+      "uid": "usr-cust-101",
+      "email": "alex.mercer@example.com",
+      "displayName": "Alex Mercer",
+      "preferredDevice": "Android TV / Google TV",
+      "role": "customer",
+      "internalNotes": "Verified 12-month single-connection subscriber on Nvidia Shield.",
+      "createdAt": "2026-10-15T14:20:00.000Z",
+      "updatedAt": "2026-10-15T14:45:00.000Z"
+    },
+    {
+      "uid": "usr-cust-102",
+      "email": "claire.dubois@example.com",
+      "displayName": "Claire Dubois",
+      "preferredDevice": "Amazon Fire TV / FireStick",
+      "role": "customer",
+      "internalNotes": "Household 3-connection annual bundle customer.",
+      "createdAt": "2026-11-01T10:12:00.000Z",
+      "updatedAt": "2026-11-01T11:00:00.000Z"
+    },
+    {
+      "uid": "usr-cust-103",
+      "email": "david.kovacs@example.com",
+      "displayName": "David Kovacs",
+      "preferredDevice": "Samsung Smart TV (Tizen)",
+      "role": "customer",
+      "internalNotes": "Submitted bank transfer order; awaiting payment verification.",
+      "createdAt": "2026-11-05T19:30:00.000Z",
+      "updatedAt": "2026-11-05T19:30:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "orderId": "ORD-2026-4464",
+      "userId": "usr-admin-1",
+      "customerEmail": "getleasecheck@gmail.com",
+      "planId": "plan-12m-1c",
+      "planName": "12 Months IPTV Subscription",
+      "durationMonths": 12,
+      "connections": 1,
+      "amountCents": 5000,
+      "currency": "USD",
+      "paymentMethod": "manual_invoice",
+      "deviceType": "Android TV / Google TV",
+      "orderStatus": "Pending",
+      "paymentStatus": "Awaiting Payment",
+      "subscriptionStatus": "Pending",
+      "activationDate": "",
+      "expirationDate": "",
+      "createdAt": "2026-11-06T17:46:27.965Z",
+      "updatedAt": "2026-11-06T17:46:27.965Z"
+    },
+    {
+      "orderId": "ORD-2026-1001",
+      "userId": "usr-cust-101",
+      "customerEmail": "alex.mercer@example.com",
+      "planId": "plan-12m-1c",
+      "planName": "12 Months IPTV Subscription",
+      "durationMonths": 12,
+      "connections": 1,
+      "amountCents": 5000,
+      "currency": "USD",
+      "paymentMethod": "manual_invoice",
+      "deviceType": "Android TV / Google TV",
+      "orderStatus": "Active",
+      "paymentStatus": "Paid",
+      "subscriptionStatus": "Active",
+      "activationDate": "2026-10-15",
+      "expirationDate": "2027-10-15",
+      "createdAt": "2026-10-15T14:22:00.000Z",
+      "updatedAt": "2026-10-15T14:45:00.000Z"
+    },
+    {
+      "orderId": "ORD-2026-1002",
+      "userId": "usr-cust-102",
+      "customerEmail": "claire.dubois@example.com",
+      "planId": "bundle-12m-3c",
+      "planName": "3 Connections × 12 Months Household Bundle",
+      "durationMonths": 12,
+      "connections": 3,
+      "amountCents": 12000,
+      "currency": "USD",
+      "paymentMethod": "manual_invoice",
+      "deviceType": "Amazon Fire TV / FireStick",
+      "orderStatus": "Active",
+      "paymentStatus": "Paid",
+      "subscriptionStatus": "Active",
+      "activationDate": "2026-11-01",
+      "expirationDate": "2027-11-01",
+      "createdAt": "2026-11-01T10:15:00.000Z",
+      "updatedAt": "2026-11-01T11:00:00.000Z"
+    },
+    {
+      "orderId": "ORD-2026-1003",
+      "userId": "usr-cust-103",
+      "customerEmail": "david.kovacs@example.com",
+      "planId": "plan-3m-1c",
+      "planName": "3 Months IPTV Subscription",
+      "durationMonths": 3,
+      "connections": 1,
+      "amountCents": 2000,
+      "currency": "USD",
+      "paymentMethod": "bank_transfer",
+      "deviceType": "Samsung Smart TV (Tizen)",
+      "orderStatus": "Pending",
+      "paymentStatus": "Payment Under Review",
+      "subscriptionStatus": "Pending",
+      "activationDate": "",
+      "expirationDate": "",
+      "createdAt": "2026-11-05T19:35:00.000Z",
+      "updatedAt": "2026-11-05T19:40:00.000Z"
+    }
+  ],
+  "trialRequests": [
+    {
+      "trialId": "TRL-2026-725",
+      "userId": "usr-1793986774735",
+      "customerEmail": "new.evaluator@example.com",
+      "deviceType": "Android TV / Google TV",
+      "playerApp": "IPTV Smarters Pro",
+      "status": "Pending",
+      "durationHours": 4,
+      "activationDate": "",
+      "expirationDate": "",
+      "createdAt": "2026-11-06T17:39:34.736Z",
+      "updatedAt": "2026-11-06T17:39:34.736Z"
+    },
+    {
+      "trialId": "TRL-2026-401",
+      "userId": "usr-cust-103",
+      "customerEmail": "david.kovacs@example.com",
+      "deviceType": "Samsung Smart TV (Tizen)",
+      "playerApp": "IBO Player",
+      "status": "Expired",
+      "durationHours": 4,
+      "activationDate": "2026-11-04 14:00 UTC",
+      "expirationDate": "2026-11-04 18:00 UTC",
+      "createdAt": "2026-11-04T13:50:00.000Z",
+      "updatedAt": "2026-11-04T18:00:00.000Z"
+    },
+    {
+      "trialId": "TRL-2026-402",
+      "userId": "usr-guest-201",
+      "customerEmail": "hannah.lin@example.com",
+      "deviceType": "Apple TV (tvOS)",
+      "playerApp": "IPTV Smarters Pro",
+      "status": "Pending",
+      "durationHours": 4,
+      "activationDate": "",
+      "expirationDate": "",
+      "createdAt": "2026-11-06T07:30:00.000Z",
+      "updatedAt": "2026-11-06T07:30:00.000Z"
+    }
+  ],
+  "supportRequests": [
+    {
+      "ticketId": "TKT-2026-901",
+      "userId": "usr-cust-101",
+      "customerEmail": "alex.mercer@example.com",
+      "subject": "Question about XMLTV EPG refresh interval on TiviMate",
+      "category": "setup",
+      "message": "What EPG update interval do you recommend on Nvidia Shield TV Pro?",
+      "status": "Resolved",
+      "createdAt": "2026-10-16T09:00:00.000Z",
+      "updatedAt": "2026-10-16T10:15:00.000Z"
+    }
+  ],
+  "articles": [
+    {
+      "articleId": "art-iptv-player-vs-subscription",
+      "slug": "iptv-player-vs-iptv-subscription-explained",
+      "title": "IPTV Player vs. IPTV Subscription: Understanding How Streaming Software and Playlists Work Together",
+      "excerpt": "Many new cord-cutters download an app like IPTV Smarters Pro or TiviMate and wonder why no channels appear. Here is the technical distinction between media player software and a content subscription.",
+      "category": "Player Software",
+      "authorName": "Elena Rostova, Technical Documentation Lead",
+      "reviewStatus": "Verified & Published",
+      "seoTitle": "IPTV Player vs IPTV Subscription Explained | Lumiq TV",
+      "seoDescription": "Understand the difference between third-party IPTV player software (IPTV Smarters Pro, TiviMate, IBO Player) and a Lumiq TV IPTV subscription.",
+      "lastUpdated": "November 6, 2026",
+      "readingTime": "5 min read",
+      "tableOfContents": [
+        "1. Why IPTV Players Ship Empty by Design",
+        "2. What an IPTV Subscription Provides (M3U & Xtream Codes)",
+        "3. Why Some Smart TV Apps Charge a Separate App License",
+        "4. Choosing the Right Plan for Single vs. Multi-Screen Homes"
+      ],
+      "content": "### 1. Why IPTV Players Ship Empty by Design\nWhen you install web browsers like Chrome or Safari, they do not own the websites you visit—they simply render HTML and media streams from URLs you enter. Third-party IPTV players such as **IPTV Smarters Pro**, **TiviMate**, **IBO Player**, and **VLC Media Player** operate on the exact same principle. They are standalone media decoder applications built to parse playlist formats and render video streams on your screen. They do not bundle, host, or sell television programming.\n\n### 2. What an IPTV Subscription Provides (M3U & Xtream Codes)\nAn **IPTV subscription** from **Lumiq TV** supplies the authenticated server credentials—delivered as either an **Xtream Codes API** login (Server URL, Username, and Password) or a standard **M3U / XMLTV URL**—that you enter into your chosen player application. Once authenticated, your player fetches the authorized channel index and Electronic Program Guide (EPG) schedule.\n\n### 3. Why Some Smart TV Apps Charge a Separate App License\nOn Samsung Tizen and LG webOS Smart TVs, certain third-party player developers charge a small one-time software license fee (often $5–$10) to unlock their app interface after a 7-day app trial. It is critical to understand that paying a software developer for their player app does **not** purchase a content subscription, and purchasing a **Lumiq TV** subscription does **not** pay for third-party commercial software licenses. Always check our [IPTV Players Hub](/iptv-players) to compare free vs. paid player interfaces.\n\n### 4. Choosing the Right Plan for Single vs. Multi-Screen Homes\nWith Lumiq TV, you can install your preferred player on multiple devices in your home. Our single-connection plans—ranging from **1 Month ($10)** and **12 Months ($50)** up to **48 Months ($140)**—allow one active stream at any given time. If your household watches on up to three screens simultaneously, our confirmed **3 Connections × 12 Months ($120)** bundle supports three concurrent streams without session conflicts.",
+      "createdAt": "2026-11-06T08:00:00.000Z",
+      "updatedAt": "2026-11-06T08:00:00.000Z"
+    },
+    {
+      "articleId": "art-why-no-lifetime-iptv-plans",
+      "slug": "evaluating-iptv-subscription-durations-and-lifetime-claims",
+      "title": "How to Evaluate IPTV Subscription Plans: Monthly, Annual, and Why Lumiq TV Does Not Offer \"Lifetime\" Plans",
+      "excerpt": "A transparent look at IPTV infrastructure costs, realistic subscription durations from 1 to 48 months, and why buyers should be cautious of unverified \"lifetime IPTV subscription\" claims.",
+      "category": "Buyer Resources",
+      "authorName": "Marcus Vance, Senior Streaming Systems Editor",
+      "reviewStatus": "Verified & Published",
+      "seoTitle": "Evaluating IPTV Subscription Plans & Lifetime Claims | Lumiq TV",
+      "seoDescription": "Compare 1-month, 12-month, and 48-month IPTV subscription pricing and learn why sustainable streaming platforms offer fixed-term plans rather than lifetime claims.",
+      "lastUpdated": "November 6, 2026",
+      "readingTime": "6 min read",
+      "tableOfContents": [
+        "1. The Real Ongoing Economics of Streaming Infrastructure",
+        "2. Why Lumiq TV Offers Fixed Terms Up to 48 Months (Not Lifetime)",
+        "3. Mathematical Breakdown of Confirmed Lumiq TV Plans",
+        "4. Using the 4-Hour Free Trial Before Committing"
+      ],
+      "content": "### 1. The Real Ongoing Economics of Streaming Infrastructure\nDelivering reliable IPTV streams requires recurring monthly investments in high-throughput server bandwidth, routing peering, EPG metadata aggregation, and customer support staffing. Because server and bandwidth costs recur every single month, any vendor advertising a one-time \"lifetime IPTV subscription\" faces an unavoidable math problem: recurring infrastructure expenses eventually exceed a one-time payment.\n\n### 2. Why Lumiq TV Offers Fixed Terms Up to 48 Months (Not Lifetime)\nAt **Lumiq TV**, we only publish sustainable, verified subscription durations backed by predictable capacity planning. **We do not offer a lifetime subscription plan.** Instead, we provide seven transparent single-connection durations and one confirmed multi-connection annual bundle so customers can choose the exact horizon that fits their budget.\n\n### 3. Mathematical Breakdown of Confirmed Lumiq TV Plans\nCompared against our **$10/month (1 Month, 1 Connection)** baseline rate:\n- **1 Month ($10 · 1 Connection)**: $10.00/mo effective rate — ideal for full-month testing.\n- **3 Months ($20 · 1 Connection)**: $6.67/mo effective rate — saves $10 (33.3%) vs. 3 separate months.\n- **6 Months ($30 · 1 Connection)**: $5.00/mo effective rate — saves $30 (50.0%) vs. 6 separate months.\n- **12 Months ($50 · 1 Connection)**: $4.17/mo effective rate — saves $70 (58.3%) vs. 12 separate months.\n- **24 Months ($90 · 1 Connection)**: $3.75/mo effective rate — saves $150 (62.5%) vs. 24 separate months.\n- **36 Months ($120 · 1 Connection)**: $3.33/mo effective rate — saves $240 (66.7%) vs. 36 separate months.\n- **48 Months ($140 · 1 Connection)**: $2.92/mo effective rate — saves $340 (70.8%) vs. 48 separate months.\n- **3 Connections × 12 Months Bundle ($120)**: $3.33/mo per connection across 3 simultaneous streams.\n\n### 4. Using the 4-Hour Free Trial Before Committing\nYou never have to guess how a playlist performs on your television. Request our [up to 4-hour IPTV Free Trial](/free-trial) first, test your preferred player and home network, and then select the fixed-term plan that matches your needs.",
+      "createdAt": "2026-11-06T08:00:00.000Z",
+      "updatedAt": "2026-11-06T08:00:00.000Z"
+    },
+    {
+      "articleId": "art-home-network-optimization-iptv",
+      "slug": "home-network-optimization-for-iptv-streaming",
+      "title": "Home Network Optimization for IPTV: Ethernet vs. 5 GHz Wi-Fi, DNS Latency, and Buffer Tuning",
+      "excerpt": "Eliminate local Wi-Fi bottlenecks, HDMI stick signal shielding, and router DNS stalls with practical home networking adjustments for Smart TVs and streaming boxes.",
+      "category": "Troubleshooting",
+      "authorName": "Marcus Vance, Senior Streaming Systems Editor",
+      "reviewStatus": "Verified & Published",
+      "seoTitle": "Home Network Optimization Guide for IPTV Streaming | Lumiq TV",
+      "seoDescription": "Practical network optimization guide for IPTV users: 5 GHz Wi-Fi channel selection, Ethernet adapters, DNS configuration, and player buffer tuning.",
+      "lastUpdated": "November 6, 2026",
+      "readingTime": "6 min read",
+      "tableOfContents": [
+        "1. Why Live IPTV Streams React Differently Than On-Demand Video",
+        "2. Fixing HDMI Stick Wi-Fi Shielding Behind Wall-Mounted TVs",
+        "3. When 5 GHz Wi-Fi Beats a 100 Mbps Smart TV Ethernet Port",
+        "4. Recommended Player Buffer Settings by Device Class"
+      ],
+      "content": "### 1. Why Live IPTV Streams React Differently Than On-Demand Video\nOn-demand video apps pre-buffer several minutes of pre-recorded files ahead of your playback cursor. Live IPTV streams transmit real-time MPEGTS or HLS segments that only exist seconds before they reach your screen. As a result, packet jitter—rather than raw peak speed—is the primary cause of live playback stutters.\n\n### 2. Fixing HDMI Stick Wi-Fi Shielding Behind Wall-Mounted TVs\nCompact HDMI devices like the Amazon Fire TV Stick plug directly behind the metal display panel of your television, which acts as a radio-frequency shield. Always use the short flexible **HDMI extender cable** included in the Fire TV box to position the stick a few inches clear of the television chassis.\n\n### 3. When 5 GHz Wi-Fi Beats a 100 Mbps Smart TV Ethernet Port\nMany Smart TVs (including premium OLED models) ship with a legacy 10/100 Mbps Fast Ethernet port rather than Gigabit Ethernet. If your Wi-Fi 6 router is in the same room as your television, a clean **5 GHz Wi-Fi** connection often delivers lower latency and higher sustained throughput than the TV's internal 100 Mbps port.\n\n### 4. Recommended Player Buffer Settings by Device Class\nInside players like TiviMate or IPTV Smarters Pro, setting the buffer size to **None** can cause micro-stutters on wireless networks, while setting it to **Very Large** slows down channel switching. For most households, a **Small to Medium (2–3 second)** buffer offers the best balance between crisp channel zapping and jitter protection.",
+      "createdAt": "2026-11-06T08:00:00.000Z",
+      "updatedAt": "2026-11-06T08:00:00.000Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "logId": "LOG-2026-001",
+      "adminUid": "usr-admin-1",
+      "adminEmail": "getleasecheck@gmail.com",
+      "action": "Verified Payment & Activated 12-Month Subscription",
+      "targetType": "order",
+      "targetId": "ORD-2026-1001",
+      "details": "Confirmed $50.00 USD payment; set orderStatus=Active, paymentStatus=Paid, subscriptionStatus=Active (2026-10-15 to 2027-10-15).",
+      "createdAt": "2026-10-15T14:45:00.000Z"
+    },
+    {
+      "logId": "LOG-2026-002",
+      "adminUid": "usr-admin-1",
+      "adminEmail": "getleasecheck@gmail.com",
+      "action": "Verified Payment & Activated 3-Connection Annual Bundle",
+      "targetType": "order",
+      "targetId": "ORD-2026-1002",
+      "details": "Confirmed $120.00 USD payment for 3 Connections × 12 Months bundle (2026-11-01 to 2027-11-01).",
+      "createdAt": "2026-11-01T11:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 1: Global Safety Net (Default-Deny Catch-All)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Core Primitives
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isVerifiedUser() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isVerifiedUser() && (
+        request.auth.token.email == "getleasecheck@gmail.com" ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.size() >= 3 && email.size() <= 254 && email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$');
+    }
+
+    // Validation Blueprints
+    function isValidProfile(data, userId) {
+      return data.keys().hasAll(['uid', 'email', 'displayName', 'preferredDevice', 'createdAt', 'updatedAt']) &&
+        data.keys().hasOnly(['uid', 'email', 'displayName', 'preferredDevice', 'internalNotes', 'createdAt', 'updatedAt']) &&
+        data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid == userId &&
+        isValidEmail(data.email) &&
+        data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 100 &&
+        data.preferredDevice is string && data.preferredDevice.size() >= 1 && data.preferredDevice.size() <= 64 &&
+        (!('internalNotes' in data) || (data.internalNotes is string && data.internalNotes.size() <= 1000)) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidAdminUser(data, userId) {
+      return data.keys().hasAll(['uid', 'email', 'role', 'createdAt']) &&
+        data.keys().hasOnly(['uid', 'email', 'role', 'createdAt']) &&
+        data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid == userId &&
+        isValidEmail(data.email) &&
+        data.role == 'admin' &&
+        data.createdAt is timestamp;
+    }
+
+    function isConfirmedCatalogPrice(durationMonths, connections, amountCents) {
+      return (connections == 1 && durationMonths == 1 && amountCents == 1000) ||
+        (connections == 1 && durationMonths == 3 && amountCents == 2000) ||
+        (connections == 1 && durationMonths == 6 && amountCents == 3000) ||
+        (connections == 1 && durationMonths == 12 && amountCents == 5000) ||
+        (connections == 1 && durationMonths == 24 && amountCents == 9000) ||
+        (connections == 1 && durationMonths == 36 && amountCents == 12000) ||
+        (connections == 1 && durationMonths == 48 && amountCents == 14000) ||
+        (connections == 3 && durationMonths == 12 && amountCents == 12000);
+    }
+
+    function isValidOrder(data, orderId) {
+      return data.keys().hasAll([
+          'orderId', 'userId', 'customerEmail', 'planId', 'planName',
+          'durationMonths', 'connections', 'amountCents', 'currency',
+          'paymentMethod', 'deviceType', 'orderStatus', 'paymentStatus',
+          'subscriptionStatus', 'activationDate', 'expirationDate',
+          'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'orderId', 'userId', 'customerEmail', 'planId', 'planName',
+          'durationMonths', 'connections', 'amountCents', 'currency',
+          'paymentMethod', 'deviceType', 'orderStatus', 'paymentStatus',
+          'subscriptionStatus', 'activationDate', 'expirationDate',
+          'createdAt', 'updatedAt'
+        ]) &&
+        data.orderId is string && data.orderId == orderId && isValidId(data.orderId) &&
+        data.userId is string && isValidId(data.userId) &&
+        isValidEmail(data.customerEmail) &&
+        data.planId is string && data.planId.size() >= 1 && data.planId.size() <= 64 && data.planId.matches('^[a-zA-Z0-9_\\-]+$') &&
+        data.planName is string && data.planName.size() >= 1 && data.planName.size() <= 120 &&
+        data.durationMonths is int &&
+        data.connections is int &&
+        data.amountCents is int &&
+        isConfirmedCatalogPrice(data.durationMonths, data.connections, data.amountCents) &&
+        data.currency == 'USD' &&
+        data.paymentMethod in ['manual_invoice', 'bank_transfer', 'card_gateway_pending', 'crypto_manual'] &&
+        data.deviceType is string && data.deviceType.size() >= 1 && data.deviceType.size() <= 64 &&
+        data.orderStatus in ['Pending', 'Processing', 'Active', 'Cancelled'] &&
+        data.paymentStatus in ['Awaiting Payment', 'Payment Under Review', 'Paid', 'Refunded'] &&
+        data.subscriptionStatus in ['Pending', 'Active', 'Expired', 'Cancelled'] &&
+        data.activationDate is string && data.activationDate.size() <= 64 &&
+        data.expirationDate is string && data.expirationDate.size() <= 64 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidTrialRequest(data, trialId) {
+      return data.keys().hasAll([
+          'trialId', 'userId', 'customerEmail', 'deviceType', 'playerApp',
+          'status', 'durationHours', 'activationDate', 'expirationDate',
+          'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'trialId', 'userId', 'customerEmail', 'deviceType', 'playerApp',
+          'status', 'durationHours', 'activationDate', 'expirationDate',
+          'createdAt', 'updatedAt'
+        ]) &&
+        data.trialId is string && data.trialId == trialId && isValidId(data.trialId) &&
+        data.userId is string && isValidId(data.userId) &&
+        isValidEmail(data.customerEmail) &&
+        data.deviceType is string && data.deviceType.size() >= 1 && data.deviceType.size() <= 64 &&
+        data.playerApp is string && data.playerApp.size() >= 1 && data.playerApp.size() <= 64 &&
+        data.status in ['Pending', 'Approved', 'Active', 'Expired', 'Rejected'] &&
+        data.durationHours == 4 &&
+        data.activationDate is string && data.activationDate.size() <= 64 &&
+        data.expirationDate is string && data.expirationDate.size() <= 64 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidSupportRequest(data, ticketId) {
+      return data.keys().hasAll([
+          'ticketId', 'userId', 'customerEmail', 'subject', 'category',
+          'message', 'status', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'ticketId', 'userId', 'customerEmail', 'subject', 'category',
+          'message', 'status', 'createdAt', 'updatedAt'
+        ]) &&
+        data.ticketId is string && data.ticketId == ticketId && isValidId(data.ticketId) &&
+        data.userId is string && isValidId(data.userId) &&
+        isValidEmail(data.customerEmail) &&
+        data.subject is string && data.subject.size() >= 3 && data.subject.size() <= 160 &&
+        data.category in ['setup', 'billing', 'trial', 'compatibility', 'general'] &&
+        data.message is string && data.message.size() >= 5 && data.message.size() <= 2000 &&
+        data.status in ['Open', 'In Progress', 'Resolved'] &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidArticle(data, articleId) {
+      return data.keys().hasAll([
+          'articleId', 'slug', 'title', 'excerpt', 'category', 'content',
+          'authorName', 'reviewStatus', 'seoTitle', 'seoDescription',
+          'lastUpdated', 'createdAt', 'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'articleId', 'slug', 'title', 'excerpt', 'category', 'content',
+          'authorName', 'reviewStatus', 'seoTitle', 'seoDescription',
+          'lastUpdated', 'createdAt', 'updatedAt'
+        ]) &&
+        data.articleId is string && data.articleId == articleId && isValidId(data.articleId) &&
+        data.slug is string && data.slug.size() >= 1 && data.slug.size() <= 128 && data.slug.matches('^[a-zA-Z0-9_\\-]+$') &&
+        data.title is string && data.title.size() >= 3 && data.title.size() <= 180 &&
+        data.excerpt is string && data.excerpt.size() >= 10 && data.excerpt.size() <= 400 &&
+        data.category in ['Setup Guides', 'Player Software', 'Device Compatibility', 'Troubleshooting', 'Buyer Resources'] &&
+        data.content is string && data.content.size() >= 20 && data.content.size() <= 20000 &&
+        data.authorName is string && data.authorName.size() >= 2 && data.authorName.size() <= 100 &&
+        data.reviewStatus in ['Draft', 'In Review', 'Verified & Published'] &&
+        data.seoTitle is string && data.seoTitle.size() >= 5 && data.seoTitle.size() <= 120 &&
+        data.seoDescription is string && data.seoDescription.size() >= 10 && data.seoDescription.size() <= 240 &&
+        data.lastUpdated is string && data.lastUpdated.size() >= 4 && data.lastUpdated.size() <= 40 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidAuditLog(data, logId) {
+      return data.keys().hasAll([
+          'logId', 'adminUid', 'adminEmail', 'action', 'targetType',
+          'targetId', 'details', 'createdAt'
+        ]) &&
+        data.keys().hasOnly([
+          'logId', 'adminUid', 'adminEmail', 'action', 'targetType',
+          'targetId', 'details', 'createdAt'
+        ]) &&
+        data.logId is string && data.logId == logId && isValidId(data.logId) &&
+        data.adminUid is string && data.adminUid == request.auth.uid && isValidId(data.adminUid) &&
+        isValidEmail(data.adminEmail) &&
+        data.action is string && data.action.size() >= 2 && data.action.size() <= 120 &&
+        data.targetType in ['order', 'trial', 'article', 'profile', 'support'] &&
+        data.targetId is string && isValidId(data.targetId) &&
+        data.details is string && data.details.size() >= 2 && data.details.size() <= 1000 &&
+        data.createdAt is timestamp;
+    }
+
+    // Collection 1: Customer Profiles (PII Isolated)
+    match /profiles/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+
+      allow create: if isValidId(userId) &&
+        isOwner(userId) &&
+        isValidProfile(incoming(), userId) &&
+        !('internalNotes' in incoming()) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isValidId(userId) &&
+        isValidProfile(incoming(), userId) &&
+        incoming().uid == existing().uid &&
+        incoming().email == existing().email &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time && (
+          (isOwner(userId) && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'preferredDevice', 'updatedAt'])) ||
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'preferredDevice', 'internalNotes', 'updatedAt']))
+        );
+
+      allow delete: if false;
+    }
+
+    // Collection 2: Admin Roles
+    match /admins/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isValidId(userId) && isAdmin() && isValidAdminUser(incoming(), userId) && incoming().createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    // Collection 3: Orders
+    match /orders/{orderId} {
+      allow get: if isValidId(orderId) && (isOwner(existing().userId) || isAdmin());
+      allow list: if isVerifiedUser() && (existing().userId == request.auth.uid || isAdmin());
+
+      allow create: if isValidId(orderId) &&
+        isOwner(incoming().userId) &&
+        isValidOrder(incoming(), orderId) &&
+        incoming().orderStatus == 'Pending' &&
+        incoming().paymentStatus in ['Awaiting Payment', 'Payment Under Review'] &&
+        incoming().subscriptionStatus == 'Pending' &&
+        incoming().activationDate == '' &&
+        incoming().expirationDate == '' &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isValidId(orderId) &&
+        isValidOrder(incoming(), orderId) &&
+        incoming().orderId == existing().orderId &&
+        incoming().userId == existing().userId &&
+        incoming().customerEmail == existing().customerEmail &&
+        incoming().planId == existing().planId &&
+        incoming().durationMonths == existing().durationMonths &&
+        incoming().connections == existing().connections &&
+        incoming().amountCents == existing().amountCents &&
+        incoming().currency == existing().currency &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time && (
+          // Customer Action: Submit payment verification notice while Pending
+          (isOwner(existing().userId) &&
+            existing().orderStatus == 'Pending' &&
+            existing().paymentStatus == 'Awaiting Payment' &&
+            incoming().paymentStatus == 'Payment Under Review' &&
+            incoming().diff(existing()).affectedKeys().hasOnly(['paymentStatus', 'updatedAt'])) ||
+          // Admin Action: Full fulfillment, payment verification, activation/expiration management
+          (isAdmin() &&
+            incoming().diff(existing()).affectedKeys().hasOnly([
+              'orderStatus', 'paymentStatus', 'subscriptionStatus',
+              'activationDate', 'expirationDate', 'updatedAt'
+            ]))
+        );
+
+      allow delete: if false;
+    }
+
+    // Collection 4: Free Trial Requests
+    match /trial_requests/{trialId} {
+      allow get: if isValidId(trialId) && (isOwner(existing().userId) || isAdmin());
+      allow list: if isVerifiedUser() && (existing().userId == request.auth.uid || isAdmin());
+
+      allow create: if isValidId(trialId) &&
+        isOwner(incoming().userId) &&
+        isValidTrialRequest(incoming(), trialId) &&
+        incoming().status == 'Pending' &&
+        incoming().activationDate == '' &&
+        incoming().expirationDate == '' &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isValidId(trialId) &&
+        isValidTrialRequest(incoming(), trialId) &&
+        incoming().trialId == existing().trialId &&
+        incoming().userId == existing().userId &&
+        incoming().customerEmail == existing().customerEmail &&
+        incoming().durationHours == existing().durationHours &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        isAdmin() &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'activationDate', 'expirationDate', 'updatedAt']);
+
+      allow delete: if false;
+    }
+
+    // Collection 5: Support Requests
+    match /support_requests/{ticketId} {
+      allow get: if isValidId(ticketId) && (isOwner(existing().userId) || isAdmin());
+      allow list: if isVerifiedUser() && (existing().userId == request.auth.uid || isAdmin());
+
+      allow create: if isValidId(ticketId) &&
+        isOwner(incoming().userId) &&
+        isValidSupportRequest(incoming(), ticketId) &&
+        incoming().status == 'Open' &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isValidId(ticketId) &&
+        isValidSupportRequest(incoming(), ticketId) &&
+        incoming().ticketId == existing().ticketId &&
+        incoming().userId == existing().userId &&
+        incoming().customerEmail == existing().customerEmail &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        isAdmin() &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']);
+
+      allow delete: if false;
+    }
+
+    // Collection 6: Editorial Articles & Guides
+    match /articles/{articleId} {
+      allow get: if isValidId(articleId) && (existing().reviewStatus == 'Verified & Published' || isAdmin());
+      allow list: if existing().reviewStatus == 'Verified & Published' || isAdmin();
+
+      allow create: if isValidId(articleId) &&
+        isAdmin() &&
+        isValidArticle(incoming(), articleId) &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isValidId(articleId) &&
+        isAdmin() &&
+        isValidArticle(incoming(), articleId) &&
+        incoming().articleId == existing().articleId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'slug', 'title', 'excerpt', 'category', 'content', 'authorName',
+          'reviewStatus', 'seoTitle', 'seoDescription', 'lastUpdated', 'updatedAt'
+        ]);
+
+      allow delete: if false;
+    }
+
+    // Collection 7: Immutable Admin Audit Logs
+    match /admin_audit_logs/{logId} {
+      allow get: if isValidId(logId) && isAdmin();
+      allow list: if isAdmin();
+
+      allow create: if isValidId(logId) &&
+        isAdmin() &&
+        isValidAuditLog(incoming(), logId) &&
+        incoming().createdAt == request.time;
+
+      allow update, delete: if false;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Lumiq TV — IPTV Subscription Platform",
+  "description": "Premium IPTV subscription platform by Lumiq TV offering verified single-connection and multi-connection plans, 4-hour free trial requests, device compatibility guides, and player setup tutorials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
